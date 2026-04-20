@@ -3,5 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: CurrencyRateSync
 Bundle-SymbolicName: CurrencyRateSync
 Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.adempiere.base;bundle-version="13.0.0",
+ org.adempiere.base.process;bundle-version="13.0.0"
 Automatic-Module-Name: CurrencyRateSync
 Bundle-RequiredExecutionEnvironment: JavaSE-17
