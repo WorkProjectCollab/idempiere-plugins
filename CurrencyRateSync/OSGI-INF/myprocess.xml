@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component xmlns="http://www.osgi.org/xmlns/scr/v1.3.0"
-    name="in.tenthplanet.idempiere.currencyratesync.process.CurrencySyncProcess"
+    name="in.tenthplanet.idempiere.currencyratesync.process.CurrencySyncProcessFactory"
     immediate="true">
 
-    <implementation class="in.tenthplanet.idempiere.currencyratesync.process.CurrencySyncProcess"/>
+    <implementation class="in.tenthplanet.idempiere.currencyratesync.process.CurrencySyncProcessFactory"/>
 
     <service>
         <provide interface="org.adempiere.base.IProcessFactory"/>
     </service>
 
-    <property name="in.tenthplanet.idempiere.currencyratesync.process.CurrencySyncProcess"
+    <property name="process.classname"
               type="String"
               value="in.tenthplanet.idempiere.currencyratesync.process.CurrencySyncProcess"/>
+
 </component>
