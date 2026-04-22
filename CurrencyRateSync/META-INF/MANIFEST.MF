@@ -7,8 +7,13 @@ Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: in.tenthplanet.idempiere.currencyratesync
 Service-Component: OSGI-INF/*.xml
-Require-Bundle: org.adempiere.base;bundle-version="13.0.0"
-Import-Package: org.compiere.process,
+Require-Bundle: org.adempiere.base;bundle-version="13.0.0",
+ com.fasterxml.jackson.core.jackson-core;bundle-version="2.15.4"
+Import-Package: com.fasterxml.jackson.annotation;version="[2.15.0,3.0.0)",
+ com.fasterxml.jackson.core;version="[2.15.0,3.0.0)",
+ com.fasterxml.jackson.databind;version="[2.15.0,3.0.0)",
  org.adempiere.base,
+ org.compiere.process,
+ org.junit.jupiter.api;version="[5.9.0,6.0.0)",
  org.osgi.framework;version="[1.10.0,2.0.0)"
 Export-Package: in.tenthplanet.idempiere.currencyratesync.process
