@@ -1,23 +1,26 @@
 package in.tenthplanet.idempiere.currencyratesync.process;
 
+import java.sql.Timestamp;
+import java.util.logging.Level;
+
+import org.compiere.model.MCurrency;
 import org.compiere.model.MProcessPara;
 import org.compiere.process.ProcessInfoParameter;
 import org.compiere.process.SvrProcess;
-import java.sql.Timestamp;
 
 /**
  *	Currency Rate Sync Process
  *	
  *  @author Surya
  */
-public class CurrencySyncProcess extends SvrProcess {
+public class CurrencyRateSyncProcess extends SvrProcess {
 	
 	/**	Currency Rate Sync Parameter  */
 	
 	/**Currency					*/
-	private String  		p_C_Currency_ID=null;
+	private int  		p_C_Currency_ID=0;
 	/**Currency	To				*/
-	private String  		p_C_Currency_ID_To=null;
+	private int  		p_C_Currency_ID_To=0;
 	/**Date						*/
 	private Timestamp   	p_Date;
 
@@ -31,10 +34,10 @@ public class CurrencySyncProcess extends SvrProcess {
         	if(para[i].getParameter() == null && para[i].getParameter_To() == null)
     			;
         	else if(name.equals("C_Currency_ID"))
-        		p_C_Currency_ID=para[i].getParameterAsString();
+        		p_C_Currency_ID=para[i].getParameterAsInt();
         	else if(name.equals("C_Currency_ID_To"))
-        		p_C_Currency_ID_To=para[i].getParameterAsString();
-        	else if(name.equals("Date"))
+        		p_C_Currency_ID_To=para[i].getParameterAsInt();
+        	else if(name.equals("DateAcct"))
         		p_Date=para[i].getParameterAsTimestamp();
         	else
         		MProcessPara.validateUnknownParameter(getProcessInfo().getAD_Process_ID(), para[i]);
@@ -42,9 +45,18 @@ public class CurrencySyncProcess extends SvrProcess {
         
     }
 
-    @Override
+    /**
+	 * 	Process
+	 *	@return info
+	 *	@throws Exception
+	 */
     protected String doIt() throws Exception {
-        System.out.println("CurrencySyncProcess — doIt() called!");
-        return "Surya-CurrencyRateSync";
+        String fromISO = MCurrency.getISO_Code(getCtx(), p_C_Currency_ID);
+        String toISO = MCurrency.getISO_Code(getCtx(), p_C_Currency_ID_To);
+        
+        if(log.isLoggable(Level.INFO)) log.info("From=" + fromISO + ", To=" + toISO + ", Date=" + p_Date);
+        
+        
+        return "Currency Rate Sync Completed";
     }
 }
