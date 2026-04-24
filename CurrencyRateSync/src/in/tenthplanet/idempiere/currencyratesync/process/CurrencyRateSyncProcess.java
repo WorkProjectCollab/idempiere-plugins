@@ -7,6 +7,7 @@ import org.compiere.model.MCurrency;
 import org.compiere.model.MProcessPara;
 import org.compiere.process.ProcessInfoParameter;
 import org.compiere.process.SvrProcess;
+import in.tenthplanet.idempiere.currencyratesync.util.CurrencyApi;
 
 /**
  *	Currency Rate Sync Process
